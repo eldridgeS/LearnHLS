@@ -48,7 +48,9 @@ product_loop: Pipelined with II=1.
 row_loop_col_loop: Not pipelined (sequential execution of outer loops).
 Resources: 1 DSP, 182 FFs, 824 LUTs, 0 BRAMs.
 Analysis: While ARRAY_PARTITION complete successfully mapped arrays to registers and product_loop achieved II=1, the overall latency significantly increased. This happened because explicitly pipelining only the innermost loop prevented Vitis HLS from applying its more effective default parallelism to the outer loops. The design became largely sequential at the outer loop level, losing the benefit of the 4 parallel DSPs seen in the baseline.
-### Configuration 3: Array Partition + Dataflow + Inner Loop Pipeline
+### Configuration 3: Array Partition + Dataflow + Outer Loop Pipeline
+![Dataflow](images/dataflow.png) 
+![Unroll](images/unroll.png) 
 Observations from Report:
 Overall Latency: - (Dataflow - streaming)
 col_loop: Pipelined with II=1.
@@ -58,7 +60,7 @@ Summary Comparison Table
 ![Comparison](images/comparison.png) 
 
 ## Conclusion on Performance
-- The "AP + Dataflow + Inner Pipe" configuration (Configuration 3) is the fastest in terms of throughput for continuous matrix multiplication. While its single-run latency is not directly reported (due to the streaming nature of DATAFLOW), its ability to start a new column computation every clock cycle (II=1 for col_loop) and its high degree of parallelism (13 DSPs) means it can process a stream of matrices much faster than the other configurations.
+- The "AP + Dataflow + Outer Pipe" configuration (Configuration 3) is the fastest in terms of throughput for continuous matrix multiplication. While its single-run latency is not directly reported (due to the streaming nature of DATAFLOW), its ability to start a new column computation every clock cycle (II=1 for col_loop) and its high degree of parallelism (13 DSPs) means it can process a stream of matrices much faster than the other configurations.
 ![Configuration 3](images/ap_dataflow_outer_loop_pipeline.png) 
 - The "No Pragmas" baseline (Configuration 1) performed surprisingly well due to Vitis HLS's intelligent default optimizations. 
 ![Configuration 1](images/no_pragma.png) 
