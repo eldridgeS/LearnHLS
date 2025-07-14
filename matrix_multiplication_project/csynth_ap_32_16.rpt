@@ -1,0 +1,184 @@
+
+
+================================================================
+== Synthesis Summary Report of 'matrix_mult'
+================================================================
++ General Information: 
+    * Date:           Mon Jul 14 00:12:40 2025
+    * Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)
+    * Project:        matrix_multiplication
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtex7
+    * Target device:  xc7vx485t-ffg1157-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-----------------------------------------------------+------+------+---------+--------+----------+---------+------+----------+------+---------+------------+------------+-----+
+    |                       Modules                       | Issue|      | Latency | Latency| Iteration|         | Trip |          |      |         |            |            |     |
+    |                       & Loops                       | Type | Slack| (cycles)|  (ns)  |  Latency | Interval| Count| Pipelined| BRAM |   DSP   |     FF     |     LUT    | URAM|
+    +-----------------------------------------------------+------+------+---------+--------+----------+---------+------+----------+------+---------+------------+------------+-----+
+    |+ matrix_mult*                                       |     -|  0.43|        -|       -|         -|        -|     -|  dataflow|     -|  39 (1%)|   8369 (1%)|   4694 (1%)|    -|
+    | + call_ret_Block_split37_proc_fu_118                |     -|  7.04|        0|   0.000|         -|        0|     -|        no|     -|        -|  1218 (~0%)|   299 (~0%)|    -|
+    | + grp_Loop_row_loop_proc_fu_186                     |     -|  0.43|        -|       -|         -|        -|     -|        no|     -|  39 (1%)|  3951 (~0%)|  1797 (~0%)|    -|
+    |  + grp_Loop_row_loop_proc_Pipeline_col_loop_fu_375  |     -|  0.43|        7|  56.000|         -|        7|     -|        no|     -|  3 (~0%)|   222 (~0%)|   179 (~0%)|    -|
+    |   o col_loop                                        |     -|  7.04|        5|  40.000|         3|        1|     4|       yes|     -|        -|           -|           -|    -|
+    |  o row_loop                                         |     -|  7.04|        -|       -|        13|        -|     -|        no|     -|        -|           -|           -|    -|
+    +-----------------------------------------------------+------+------+---------+--------+----------+---------+------+----------+------+---------+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* REGISTER
++-----------+---------+----------+
+| Interface | Mode    | Bitwidth |
++-----------+---------+----------+
+| A_0_0     | ap_none | 32       |
+| A_0_1     | ap_none | 32       |
+| A_0_2     | ap_none | 32       |
+| A_0_3     | ap_none | 32       |
+| A_1_0     | ap_none | 32       |
+| A_1_1     | ap_none | 32       |
+| A_1_2     | ap_none | 32       |
+| A_1_3     | ap_none | 32       |
+| A_2_0     | ap_none | 32       |
+| A_2_1     | ap_none | 32       |
+| A_2_2     | ap_none | 32       |
+| A_2_3     | ap_none | 32       |
+| A_3_0     | ap_none | 32       |
+| A_3_1     | ap_none | 32       |
+| A_3_2     | ap_none | 32       |
+| A_3_3     | ap_none | 32       |
+| B_0_0     | ap_none | 32       |
+| B_0_1     | ap_none | 32       |
+| B_0_2     | ap_none | 32       |
+| B_0_3     | ap_none | 32       |
+| B_1_0     | ap_none | 32       |
+| B_1_1     | ap_none | 32       |
+| B_1_2     | ap_none | 32       |
+| B_1_3     | ap_none | 32       |
+| B_2_0     | ap_none | 32       |
+| B_2_1     | ap_none | 32       |
+| B_2_2     | ap_none | 32       |
+| B_2_3     | ap_none | 32       |
+| B_3_0     | ap_none | 32       |
+| B_3_1     | ap_none | 32       |
+| B_3_2     | ap_none | 32       |
+| B_3_3     | ap_none | 32       |
+| C_0_0     | ap_none | 32       |
+| C_0_1     | ap_none | 32       |
+| C_0_2     | ap_none | 32       |
+| C_0_3     | ap_none | 32       |
+| C_1_0     | ap_none | 32       |
+| C_1_1     | ap_none | 32       |
+| C_1_2     | ap_none | 32       |
+| C_1_3     | ap_none | 32       |
+| C_2_0     | ap_none | 32       |
+| C_2_1     | ap_none | 32       |
+| C_2_2     | ap_none | 32       |
+| C_2_3     | ap_none | 32       |
+| C_3_0     | ap_none | 32       |
+| C_3_1     | ap_none | 32       |
+| C_3_2     | ap_none | 32       |
+| C_3_3     | ap_none | 32       |
++-----------+---------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+---------------------------------------+
+| Argument | Direction | Datatype                              |
++----------+-----------+---------------------------------------+
+| A        | in        | ap_fixed<32, 16, AP_TRN, AP_WRAP, 0>* |
+| B        | in        | ap_fixed<32, 16, AP_TRN, AP_WRAP, 0>* |
+| C        | out       | ap_fixed<32, 16, AP_TRN, AP_WRAP, 0>* |
++----------+-----------+---------------------------------------+
+
+* SW-to-HW Mapping
++----------+--------------+---------+
+| Argument | HW Name      | HW Type |
++----------+--------------+---------+
+| A        | A_0_0        | port    |
+| A        | A_0_1        | port    |
+| A        | A_0_2        | port    |
+| A        | A_0_3        | port    |
+| A        | A_1_0        | port    |
+| A        | A_1_1        | port    |
+| A        | A_1_2        | port    |
+| A        | A_1_3        | port    |
+| A        | A_2_0        | port    |
+| A        | A_2_1        | port    |
+| A        | A_2_2        | port    |
+| A        | A_2_3        | port    |
+| A        | A_3_0        | port    |
+| A        | A_3_1        | port    |
+| A        | A_3_2        | port    |
+| A        | A_3_3        | port    |
+| B        | B_0_0        | port    |
+| B        | B_0_1        | port    |
+| B        | B_0_2        | port    |
+| B        | B_0_3        | port    |
+| B        | B_1_0        | port    |
+| B        | B_1_1        | port    |
+| B        | B_1_2        | port    |
+| B        | B_1_3        | port    |
+| B        | B_2_0        | port    |
+| B        | B_2_1        | port    |
+| B        | B_2_2        | port    |
+| B        | B_2_3        | port    |
+| B        | B_3_0        | port    |
+| B        | B_3_1        | port    |
+| B        | B_3_2        | port    |
+| B        | B_3_3        | port    |
+| C        | C_0_0        | port    |
+| C        | C_0_0_ap_vld | port    |
+| C        | C_0_1        | port    |
+| C        | C_0_1_ap_vld | port    |
+| C        | C_0_2        | port    |
+| C        | C_0_2_ap_vld | port    |
+| C        | C_0_3        | port    |
+| C        | C_0_3_ap_vld | port    |
+| C        | C_1_0        | port    |
+| C        | C_1_0_ap_vld | port    |
+| C        | C_1_1        | port    |
+| C        | C_1_1_ap_vld | port    |
+| C        | C_1_2        | port    |
+| C        | C_1_2_ap_vld | port    |
+| C        | C_1_3        | port    |
+| C        | C_1_3_ap_vld | port    |
+| C        | C_2_0        | port    |
+| C        | C_2_0_ap_vld | port    |
+| C        | C_2_1        | port    |
+| C        | C_2_1_ap_vld | port    |
+| C        | C_2_2        | port    |
+| C        | C_2_2_ap_vld | port    |
+| C        | C_2_3        | port    |
+| C        | C_2_3_ap_vld | port    |
+| C        | C_3_0        | port    |
+| C        | C_3_0_ap_vld | port    |
+| C        | C_3_1        | port    |
+| C        | C_3_1_ap_vld | port    |
+| C        | C_3_2        | port    |
+| C        | C_3_2_ap_vld | port    |
+| C        | C_3_3        | port    |
+| C        | C_3_3_ap_vld | port    |
++----------+--------------+---------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+

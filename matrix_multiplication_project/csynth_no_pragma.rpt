@@ -1,0 +1,94 @@
+
+
+================================================================
+== Synthesis Summary Report of 'matrix_mult'
+================================================================
++ General Information: 
+    * Date:           Sun Jul 13 07:43:29 2025
+    * Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)
+    * Project:        matrix_multiplication
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtex7
+    * Target device:  xc7vx485t-ffg1157-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +----------------------+------+------+---------+---------+----------+---------+------+----------+------+---------+-----------+-----------+-----+
+    |        Modules       | Issue|      | Latency | Latency | Iteration|         | Trip |          |      |         |           |           |     |
+    |        & Loops       | Type | Slack| (cycles)|   (ns)  |  Latency | Interval| Count| Pipelined| BRAM |   DSP   |     FF    |    LUT    | URAM|
+    +----------------------+------+------+---------+---------+----------+---------+------+----------+------+---------+-----------+-----------+-----+
+    |+ matrix_mult         |     -|  2.73|       39|  312.000|         -|       40|     -|        no|     -|  4 (~0%)|  137 (~0%)|  318 (~0%)|    -|
+    | o row_loop_col_loop  |    II|  7.04|       37|  296.000|         8|        2|    16|       yes|     -|        -|          -|          -|    -|
+    +----------------------+------+------+---------+---------+----------+---------+------+----------+------+---------+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++------------+----------+
+| Interface  | Bitwidth |
++------------+----------+
+| A_address0 | 4        |
+| A_address1 | 4        |
+| A_q0       | 16       |
+| A_q1       | 16       |
+| B_address0 | 4        |
+| B_address1 | 4        |
+| B_q0       | 16       |
+| B_q1       | 16       |
+| C_address0 | 4        |
+| C_d0       | 16       |
++------------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+--------------------------------------+
+| Argument | Direction | Datatype                             |
++----------+-----------+--------------------------------------+
+| A        | in        | ap_fixed<16, 8, AP_TRN, AP_WRAP, 0>* |
+| B        | in        | ap_fixed<16, 8, AP_TRN, AP_WRAP, 0>* |
+| C        | out       | ap_fixed<16, 8, AP_TRN, AP_WRAP, 0>* |
++----------+-----------+--------------------------------------+
+
+* SW-to-HW Mapping
++----------+------------+---------+----------+
+| Argument | HW Name    | HW Type | HW Usage |
++----------+------------+---------+----------+
+| A        | A_address0 | port    | offset   |
+| A        | A_ce0      | port    |          |
+| A        | A_q0       | port    |          |
+| A        | A_address1 | port    | offset   |
+| A        | A_ce1      | port    |          |
+| A        | A_q1       | port    |          |
+| B        | B_address0 | port    | offset   |
+| B        | B_ce0      | port    |          |
+| B        | B_q0       | port    |          |
+| B        | B_address1 | port    | offset   |
+| B        | B_ce1      | port    |          |
+| B        | B_q1       | port    |          |
+| C        | C_address0 | port    | offset   |
+| C        | C_ce0      | port    |          |
+| C        | C_we0      | port    |          |
+| C        | C_d0       | port    |          |
++----------+------------+---------+----------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+
