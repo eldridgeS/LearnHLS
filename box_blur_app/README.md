@@ -9,11 +9,11 @@ The project follows an iterative optimization approach, starting with a basic C/
 * **Implementation Characteristics:**  
   * The box\_blur\_filter C/C++ function directly accesses input\_pixels and output\_pixels using standard 2D array indexing.  
   * For hardware interfacing, \#pragma HLS INTERFACE s\_axilite was used for all function arguments (return value, input\_pixels, output\_pixels). AXI4-Lite is a simple, memory-mapped interface often used for control and status registers.  
-  * Initial performance directives included \#pragma HLS PIPELINE II=1 on the outermost row loop and \#pragma HLS UNROLL on the inner kernel loops.  
+  * Initial performance directives included \#pragma HLS UNROLL on the inner kernel loops.  
 * **Performance (from Synthesis Report \- c\_synth_no_buffer.rpt):**  
 ![No Buffer Report](images/report_no_buffer.png)
   * **Overall Latency:** Extremely high (e.g., approximately 8.3 million clock cycles for a 640x480 image).  
-  * **Main Processing Loop (VITIS\_LOOP\_22\_1\_VITIS\_LOOP\_23\_2):** This combined loop, representing the main image processing, was pipelined but with a very high Initiation Interval (II) (e.g., II=27).  
+  * **Main Processing Loop (VITIS\_LOOP\_22\_1\_VITIS\_LOOP\_23\_2):** This combined loop, representing the main image processing, had a very high Initiation Interval (II) (e.g., II=27).  
 * **Analysis & Bottleneck Identification:**  
   * The primary bottleneck in this phase was the **s\_axilite interface** used for the large input\_pixels and output\_pixels arrays. AXI4-Lite is inherently a low-bandwidth interface. HLS was forced to perform many sequential transfers to fetch each row of pixels, severely limiting the overall data throughput.  
   * Even though internal loops were unrolled, the slow external data access starved the internal processing units, preventing the top-level function from achieving a low II.
