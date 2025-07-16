@@ -1,0 +1,68 @@
+#include "box_blur.h"
+
+// Box Blur filter function, blurs an RGB image
+void box_blur_filter(unsigned char input_pixels[IMAGE_HEIGHT][IMAGE_WIDTH * 3],
+                     unsigned char output_pixels[IMAGE_HEIGHT][IMAGE_WIDTH * 3]) {
+
+    // HLS INTERFACE pragmas:
+   /**These pragmas define how the HLS function's arguments will map to hardware interfaces.
+     's_axilite' is a simple control interface, suitable for basic arguments.
+     It implies that 'input_pixels' and 'output_pixels' will be accessed via memory-mapped AXI-Lite,
+    which is a common way to pass data to/from HLS IP blocks. **/
+    #pragma HLS INTERFACE s_axilite port=return bundle=control
+    #pragma HLS INTERFACE s_axilite port=input_pixels bundle=control
+    #pragma HLS INTERFACE s_axilite port=output_pixels bundle=control
+
+    // Loop through each pixel of the output image
+    for (int row = 0; row < IMAGE_HEIGHT; row++) {
+        for (int col = 0; col < IMAGE_WIDTH; col++) {
+            int sum_r = 0;
+            int sum_g = 0;
+            int sum_b = 0;
+            int pixel_count = 0;
+
+            // Loop through the blur kernel (e.g., 3x3 window)
+            // The kernel_offset helps in calculating the coordinates of the neighbors
+            int kernel_offset = BLUR_SIZE / 2; // For 3x3, offset is 1 (center pixel + 1 in each direction)
+
+            for (int k_row = -kernel_offset; k_row <= kernel_offset; k_row++) {
+				#pragma HLS UNROLL // Fully unroll this loop (3 iterations become parallel)
+                for (int k_col = -kernel_offset; k_col <= kernel_offset; k_col++) {
+				#pragma HLS UNROLL // Fully unroll this loop (3 iterations become parallel)
+                    // Calculate neighbor pixel coordinates
+                    int current_row = row + k_row;
+                    int current_col = col + k_col;
+
+                    // Boundary handling: Clamp coordinates to stay within image bounds
+                    // This prevents accessing memory outside the array.
+                    if (current_row < 0) current_row = 0;
+                    if (current_row >= IMAGE_HEIGHT) current_row = IMAGE_HEIGHT - 1;
+                    if (current_col < 0) current_col = 0;
+                    if (current_col >= IMAGE_WIDTH) current_col = IMAGE_WIDTH - 1;
+
+                    // Calculate the flat index for RGB input
+                    int input_idx_r = current_col * 3; // Red component
+                    int input_idx_g = current_col * 3 + 1; // Green component
+                    int input_idx_b = current_col * 3 + 2; // Blue component
+
+                    // Accumulate RGB values from the neighborhood
+                    sum_r += input_pixels[current_row][input_idx_r];
+                    sum_g += input_pixels[current_row][input_idx_g];
+                    sum_b += input_pixels[current_row][input_idx_b];
+                    pixel_count++;
+                }
+            }
+
+            // Calculate average RGB values
+            unsigned char avg_r = (unsigned char)(sum_r / pixel_count);
+            unsigned char avg_g = (unsigned char)(sum_g / pixel_count);
+            unsigned char avg_b = (unsigned char)(sum_b / pixel_count);
+
+            // Store the resulting RGB pixel in the output array
+            // THIS IS THE KEY CHANGE: Store R, G, B directly, no grayscale conversion.
+            output_pixels[row][col * 3]     = avg_r;
+            output_pixels[row][col * 3 + 1] = avg_g;
+            output_pixels[row][col * 3 + 2] = avg_b;
+        }
+    }
+}

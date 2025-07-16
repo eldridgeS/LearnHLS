@@ -1,0 +1,107 @@
+
+
+================================================================
+== Synthesis Summary Report of 'box_blur_filter'
+================================================================
++ General Information: 
+    * Date:           Tue Jul 15 03:08:49 2025
+    * Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)
+    * Project:        box_blur_hls
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtex7
+    * Target device:  xc7vx485t-ffg1157-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +------------------------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+------------+------------+-----+
+    |                                 Modules                                | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |         |         |            |            |     |
+    |                                 & Loops                                | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   |   DSP   |     FF     |     LUT    | URAM|
+    +------------------------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+------------+------------+-----+
+    |+ box_blur_filter                                                       |     -|  0.00|  3700801|  2.961e+07|         -|  3700802|     -|        no|  8 (~0%)|  3 (~0%)|  1439 (~0%)|  2865 (~0%)|    -|
+    | + grp_box_blur_filter_Pipeline_VITIS_LOOP_27_2_VITIS_LOOP_28_3_fu_119  |     -|  1.24|     3842|  3.074e+04|         -|     3842|     -|        no|        -|        -|    51 (~0%)|   165 (~0%)|    -|
+    |  o VITIS_LOOP_27_2_VITIS_LOOP_28_3                                     |     -|  7.04|     3840|  3.072e+04|         2|        1|  3840|       yes|        -|        -|           -|           -|    -|
+    | + grp_box_blur_filter_Pipeline_VITIS_LOOP_33_4_fu_126                  |     -|  0.00|     1923|  1.538e+04|         -|     1923|     -|        no|        -|        -|    46 (~0%)|    78 (~0%)|    -|
+    |  o VITIS_LOOP_33_4                                                     |     -|  7.04|     1921|  1.537e+04|         3|        1|  1920|       yes|        -|        -|           -|           -|    -|
+    | + grp_box_blur_filter_Pipeline_VITIS_LOOP_38_5_fu_134                  |     -|  0.00|     1933|  1.546e+04|         -|     1933|     -|        no|        -|  3 (~0%)|   336 (~0%)|  1003 (~0%)|    -|
+    |  o VITIS_LOOP_38_5                                                     |    II|  7.04|     1931|  1.545e+04|        15|        3|   640|       yes|        -|        -|           -|           -|    -|
+    | o VITIS_LOOP_23_1                                                      |     -|  7.04|  3700800|  2.961e+07|      7710|        -|   480|        no|        -|        -|           -|           -|    -|
+    +------------------------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* M_AXI
++------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+| Interface  | Data Width | Address Width | Latency | Offset | Register | Max Widen | Max Read     | Max Write    | Num Read    | Num Write   |
+|            | (SW->HW)   |               |         |        |          | Bitwidth  | Burst Length | Burst Length | Outstanding | Outstanding |
++------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+| m_axi_gmem | 8 -> 8     | 64            | 0       | slave  | 0        | 0         | 16           | 16           | 16          | 16          |
++------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+
+* S_AXILITE
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 6             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++---------------+-----------+----------------+
+| Argument      | Direction | Datatype       |
++---------------+-----------+----------------+
+| input_pixels  | inout     | unsigned char* |
+| output_pixels | inout     | unsigned char* |
++---------------+-----------+----------------+
+
+* SW-to-HW Mapping
++---------------+-------------------------------+-----------+----------+-----------------------+
+| Argument      | HW Name                       | HW Type   | HW Usage | HW Info               |
++---------------+-------------------------------+-----------+----------+-----------------------+
+| input_pixels  | m_axi_gmem                    | interface |          |                       |
+| input_pixels  | s_axi_control input_pixels_1  | register  | offset   | offset=0x10, range=32 |
+| input_pixels  | s_axi_control input_pixels_2  | register  | offset   | offset=0x14, range=32 |
+| output_pixels | m_axi_gmem                    | interface |          |                       |
+| output_pixels | s_axi_control output_pixels_1 | register  | offset   | offset=0x1c, range=32 |
+| output_pixels | s_axi_control output_pixels_2 | register  | offset   | offset=0x20, range=32 |
++---------------+-------------------------------+-----------+----------+-----------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+* Burst Summary
++--------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+| HW Interface | Loop            | Message                                                                                                                                                                                                                  | Location           |
++--------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+| m_axi_gmem   | VITIS_LOOP_33_4 | Multiple burst reads of length 1920 and bit width 8. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. | box_blur.cpp:33:26 |
+| m_axi_gmem   |                 | Multiple burst writes of length 3 and bit width 8. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.   | box_blur.cpp:82:13 |
++--------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+
+* Bursts and Widening Missed
++--------------+---------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------+------------+--------------------+
+| HW Interface | Variable      | Loop            | Problem                                                                                                                                       | Resolution | Location           |
++--------------+---------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------+------------+--------------------+
+| m_axi_gmem   | output_pixels | VITIS_LOOP_38_5 | , unsigned char (*) [1920])] Access call is in the conditional branch                                                                         | 214-232    | box_blur.cpp:38:26 |
+| m_axi_gmem   | output_pixels |                 | , unsigned char (*) [1920])] Could not widen since the size of type 'i8' is greater than or equal to the max_widen_bitwidth threshold of '0'. |            | box_blur.cpp:82:13 |
+| m_axi_gmem   | input_pixels  |                 | , unsigned char (*) [1920])] Could not widen since the size of type 'i8' is greater than or equal to the max_widen_bitwidth threshold of '0'. |            | box_blur.cpp:33:26 |
++--------------+---------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------+------------+--------------------+
+
+    * Resolution URL: www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=XXX-YYY.html (replace XXX-YYY with column value)
+

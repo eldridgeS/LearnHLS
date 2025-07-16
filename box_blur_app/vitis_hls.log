@@ -1,0 +1,171 @@
+INFO: [HLS 200-10] Running '/home/elsu/Xilinx/Vitis_HLS/2021.1/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'elsu' on host 'elsu' (Linux_x86_64 version 6.11.0-29-generic) on Wed Jul 16 00:53:44 EDT 2025
+INFO: [HLS 200-10] On os Ubuntu 24.04.2 LTS
+INFO: [HLS 200-10] In directory '/home/elsu/Documents/vitis_workspace/box_blur_app'
+Sourcing Tcl script '/home/elsu/Documents/vitis_workspace/box_blur_app/box_blur_hls/solution1/csynth.tcl'
+INFO: [HLS 200-1510] Running: open_project box_blur_hls 
+INFO: [HLS 200-10] Opening project '/home/elsu/Documents/vitis_workspace/box_blur_app/box_blur_hls'.
+INFO: [HLS 200-1510] Running: set_top box_blur_filter 
+INFO: [HLS 200-1510] Running: add_files src/box_blur_buffer.txt 
+INFO: [HLS 200-10] Adding design file 'src/box_blur_buffer.txt' to the project
+INFO: [HLS 200-1510] Running: add_files src/box_blur.txt 
+INFO: [HLS 200-10] Adding design file 'src/box_blur.txt' to the project
+INFO: [HLS 200-1510] Running: add_files src/box_blur.h 
+INFO: [HLS 200-10] Adding design file 'src/box_blur.h' to the project
+INFO: [HLS 200-1510] Running: add_files src/box_blur.cpp 
+INFO: [HLS 200-10] Adding design file 'src/box_blur.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb src/box_blur_tb.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file 'src/box_blur_tb.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vivado 
+INFO: [HLS 200-10] Opening solution '/home/elsu/Documents/vitis_workspace/box_blur_app/box_blur_hls/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 8ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 0.96ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7vx485t-ffg1157-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xc7vx485t-ffg1157-1 
+INFO: [HLS 200-1510] Running: create_clock -period 8 -name default 
+INFO: [HLS 200-1510] Running: set_clock_uncertainty 12% 
+INFO: [HLS 200-1510] Running: set_directive_top -name box_blur_filter box_blur_filter 
+INFO: [HLS 200-1510] Running: csynth_design 
+WARNING: [HLS 200-40] Skipped source file 'box_blur.txt'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'box_blur_buffer.txt'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 122.461 MB.
+INFO: [HLS 200-10] Analyzing design file 'src/box_blur.cpp' ... 
+WARNING: [HLS 207-5528] Ignore interface attribute or pragma which is not used in top function: src/box_blur.cpp:14:9
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.77 seconds. CPU system time: 1.88 seconds. Elapsed time: 1.51 seconds; current allocated memory: 123.934 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-279] Initial Interval estimation mode is set into default.
+INFO: [HLS 214-284] Auto array partition mode is set into default.
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_52_6' (src/box_blur.cpp:52:34) in function 'box_blur_filter' completely with a factor of 3 (src/box_blur.cpp:6:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_54_7' (src/box_blur.cpp:54:19) in function 'box_blur_filter' completely with a factor of 3 (src/box_blur.cpp:6:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_54_7' (src/box_blur.cpp:54:19) in function 'box_blur_filter' completely with a factor of 3 (src/box_blur.cpp:6:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_54_7' (src/box_blur.cpp:54:19) in function 'box_blur_filter' completely with a factor of 3 (src/box_blur.cpp:6:0)
+INFO: [HLS 214-270] Starting automatic array partition analysis...
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 7.95 seconds. CPU system time: 1.49 seconds. Elapsed time: 7.61 seconds; current allocated memory: 126.490 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 126.492 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 127.991 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 127.195 MB.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_30_3' (src/box_blur.cpp:30) in function 'box_blur_filter' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_35_4' (src/box_blur.cpp:35) in function 'box_blur_filter' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_40_5' (src/box_blur.cpp:40) in function 'box_blur_filter' automatically.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer' (src/box_blur.cpp:20) in dimension 1 completely.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (src/box_blur.cpp:30:39) to (src/box_blur.cpp:31:35) in function 'box_blur_filter'... converting 4 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'box_blur_filter' (src/box_blur.cpp:5)...24 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.13 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.16 seconds; current allocated memory: 148.302 MB.
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_29_2' (src/box_blur.cpp:29:35) in function 'box_blur_filter'.
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_25_1' (src/box_blur.cpp:25:28) in function 'box_blur_filter' more than one sub loop.
+Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-960.html
+INFO: [HLS 200-472] Inferring partial write operation for 'line_buffer[0]' (src/box_blur.cpp:31:35)
+INFO: [HLS 200-472] Inferring partial write operation for 'line_buffer[2]' (src/box_blur.cpp:36:35)
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.08 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.11 seconds; current allocated memory: 170.946 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'box_blur_filter' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'box_blur_filter_Pipeline_VITIS_LOOP_29_2_VITIS_LOOP_30_3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'line_buffer_1'. Use bind_storage pragma to override this type.
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'line_buffer_0'. Use bind_storage pragma to override this type.
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'line_buffer_2'. Use bind_storage pragma to override this type.
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_29_2_VITIS_LOOP_30_3'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'VITIS_LOOP_29_2_VITIS_LOOP_30_3'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.07 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.1 seconds; current allocated memory: 171.305 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.05 seconds; current allocated memory: 171.536 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'box_blur_filter_Pipeline_VITIS_LOOP_35_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'line_buffer_2'. Use bind_storage pragma to override this type.
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_35_4'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'VITIS_LOOP_35_4'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.08 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.09 seconds; current allocated memory: 171.696 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 171.803 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'box_blur_filter_Pipeline_VITIS_LOOP_40_5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [HLS 200-486] Changing DSP48 latency (root=add_ln77) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP48 latency (root=add_ln76) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP48 latency (root=add_ln75) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'line_buffer_2'. Use bind_storage pragma to override this type.
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'line_buffer_1'. Use bind_storage pragma to override this type.
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'line_buffer_0'. Use bind_storage pragma to override this type.
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_40_5'.
+WARNING: [HLS 200-885] The II Violation in module 'box_blur_filter_Pipeline_VITIS_LOOP_40_5' (loop 'VITIS_LOOP_40_5'): Unable to schedule 'store' operation ('output_pixels_addr_write_ln81', src/box_blur.cpp:81) of variable 'avg_r', src/box_blur.cpp:75 on array 'output_pixels' due to limited memory ports (II = 1). Please consider using a memory core with more ports or partitioning the array 'output_pixels'.
+Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-885.html
+WARNING: [HLS 200-885] The II Violation in module 'box_blur_filter_Pipeline_VITIS_LOOP_40_5' (loop 'VITIS_LOOP_40_5'): Unable to schedule 'store' operation ('output_pixels_addr_1_write_ln82', src/box_blur.cpp:82) of variable 'avg_g', src/box_blur.cpp:76 on array 'output_pixels' due to limited memory ports (II = 2). Please consider using a memory core with more ports or partitioning the array 'output_pixels'.
+Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-885.html
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 3, Depth = 10, loop 'VITIS_LOOP_40_5'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.27 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.3 seconds; current allocated memory: 172.449 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.21 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.23 seconds; current allocated memory: 173.220 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'box_blur_filter' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.31 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.34 seconds; current allocated memory: 173.404 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.15 seconds. CPU system time: 0 seconds. Elapsed time: 0.15 seconds; current allocated memory: 173.596 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'box_blur_filter_Pipeline_VITIS_LOOP_29_2_VITIS_LOOP_30_3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'box_blur_filter_Pipeline_VITIS_LOOP_29_2_VITIS_LOOP_30_3' pipeline 'VITIS_LOOP_29_2_VITIS_LOOP_30_3' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'box_blur_filter_Pipeline_VITIS_LOOP_29_2_VITIS_LOOP_30_3'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.28 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.3 seconds; current allocated memory: 174.098 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'box_blur_filter_Pipeline_VITIS_LOOP_35_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'box_blur_filter_Pipeline_VITIS_LOOP_35_4' pipeline 'VITIS_LOOP_35_4' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'box_blur_filter_Pipeline_VITIS_LOOP_35_4'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.18 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.19 seconds; current allocated memory: 175.152 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'box_blur_filter_Pipeline_VITIS_LOOP_40_5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'box_blur_filter_Pipeline_VITIS_LOOP_40_5' pipeline 'VITIS_LOOP_40_5' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Generating core module 'am_addmul_11ns_10ns_13ns_25_4_1': 3 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'box_blur_filter_Pipeline_VITIS_LOOP_40_5'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.16 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.18 seconds; current allocated memory: 177.011 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'box_blur_filter' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'box_blur_filter/input_pixels' to 's_axilite & ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'box_blur_filter/output_pixels' to 's_axilite & ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'box_blur_filter' to 's_axilite & ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Bundling port 'input_pixels', 'output_pixels' and 'return' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'box_blur_filter'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.78 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.83 seconds; current allocated memory: 180.936 MB.
+INFO: [RTMG 210-278] Implementing memory 'box_blur_filter_line_buffer_0_ram (RAM_1WnR)' using auto RAMs.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.87 seconds. CPU system time: 0.09 seconds. Elapsed time: 0.97 seconds; current allocated memory: 185.123 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.44 seconds. CPU system time: 0.05 seconds. Elapsed time: 0.49 seconds; current allocated memory: 192.638 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for box_blur_filter.
+INFO: [VLOG 209-307] Generating Verilog RTL for box_blur_filter.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 144.58 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 12.92 seconds. CPU system time: 3.79 seconds. Elapsed time: 13.77 seconds; current allocated memory: 192.623 MB.
+INFO: [HLS 200-112] Total CPU user time: 14.84 seconds. Total CPU system time: 5 seconds. Total elapsed time: 15.99 seconds; peak allocated memory: 192.638 MB.
