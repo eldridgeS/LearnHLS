@@ -90,3 +90,7 @@ This project effectively demonstrates the iterative process of HLS optimization,
 ![Tree](images/tree_640_480.png)
 turns into...
 ![Tree](images/output_tree_640_480.png)
+
+### References
+- https://www.geeksforgeeks.org/machine-learning/box-blur-algorithm-with-python-implementation/
+- https://doc.rust-lang.org/book/ch01-01-installation.html
