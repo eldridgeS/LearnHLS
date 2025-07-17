@@ -88,7 +88,7 @@ Concept: LLVM IR (Low-Level Virtual Machine Intermediate Representation) is a ha
 #### Relevance to Project:
  - Optimization Target: While LLVM IR is not directly written, every pragma applied (PIPELINE, ARRAY_PARTITION, DATAFLOW) and every C++ coding style choice made directly influenced how Vitis HLS transformed and optimized the underlying LLVM IR. The performance and resource results observed are a direct consequence of these transformations on the IR.
  - Transparency: Vitis HLS allows inspection of the generated LLVM IR files (often .ll files found within the solution's sim directory after Co-Simulation). Examining these files can provide deeper insights into how the C++ code is represented and optimized at an intermediate level before becoming RTL. This project serves as a practical example where one can trace the impact of high-level code changes and pragmas down to this low-level representation.
-### d. Debugging at FFI Boundaries
+### d. FFI Boundaries
 Concept: Foreign Function Interface (FFI) boundaries refer to the points where code written in one language or paradigm interacts with code written in another (e.g., Python calling C, or in this case, software interacting with hardware). Debugging at these boundaries involves ensuring data is correctly marshaled, interfaces are correctly implemented, and communication protocols are followed.
 #### Relevance to Project:
  - Software-Hardware Interface: The matrix_mult_tb.cpp (software) interacts with the matrix_mult function (which becomes hardware). This is a prime FFI boundary.
@@ -111,3 +111,7 @@ Out of curiosity, I increased the precision of the fixed point numbers from ap_f
 ![Change ap_fixed](images/change_ap_fixed.png) 
 The synthesis report showed a significant increase in resource utilization compared to the previous ap_fixed<16, 8> version, while maintaining the same high throughput. The number of DSPs used jumped from 13 to 39, and FFs increased from 4402 to 8369, with LUTs rising from 3241 to 4694. This is expected, as processing data with double the bit-width requires more complex and larger arithmetic units and wider registers. Crucially, the design successfully maintains its DATAFLOW characteristic (latency still -) and the col_loop still achieves an II=1, indicating that the increased precision did not compromise the high throughput and parallelism achieved by the DATAFLOW and PIPELINE pragmas. This demonstrates the direct relationship between data precision and hardware resource consumption in HLS, where higher precision translates to more demanding hardware.
 ![ap fixed 32 16](images/ap_fixed_32_16.png) 
+
+## References
+- https://docs.amd.com/r/2021.1-English/ug1399-vitis-hls/Creating-a-New-Vitis-HLS-Project
+- https://docs.amd.com/r/2022.1-English/ug1399-vitis-hls/Arbitrary-Precision-Fixed-Point-Data-Types
