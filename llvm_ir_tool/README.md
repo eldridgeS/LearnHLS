@@ -81,17 +81,17 @@ cargo run \<filename.ll\> \[function\_name\] \[line\_number\]. Alternatively, yo
 1. **Analyze the entire LLVM IR file and show instruction counts for all functions:**  
    cargo run example.ll
 
-\!\[Default Usage\](images/default.png)
+![Default Usage](images/default.png)
 
 2. **Show instruction counts and source lines for a specific function:**  
    cargo run example.ll main
 
-\!\[Function usage\](images/function.png)
+![Function usage](images/function.png)
 
 3. **Explain a specific line within a function:**  
    cargo run example.ll main 57
 
-\!\[Line Usage\](images/line.png)  
+![Line Usage](images/line.png)  
 *(Note: Replace 57 with the actual line number of the instruction you want explained within the specified function in your .ll file.)*
 
 ## **Future expansions**
