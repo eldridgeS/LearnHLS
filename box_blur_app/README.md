@@ -3,6 +3,8 @@
 This document provides a detailed overview of the Box Blur image filter project, demonstrating the process of implementing and optimizing a computational kernel for High-Level Synthesis (HLS). The goal is to accelerate image processing tasks on FPGAs, and this project showcases key techniques for achieving high performance in hardware.  
 The project follows an iterative optimization approach, starting with a basic C/C++ implementation and progressively applying HLS-specific optimizations. The hardware design (synthesized C/C++) was then integrated with a host application written in Rust to form a complete system.
 
+Video Demonstration: https://youtu.be/N2pfXKTiFtc
+
 ### **Phase 1: Initial Software-Hardware Co-design & Baseline Performance**
 
 * **Objective:** To establish a functionally correct C/C++ implementation of the Box Blur filter and obtain a baseline performance estimate from HLS. This phase focused on getting the core algorithm right and understanding the initial hardware mapping.  
