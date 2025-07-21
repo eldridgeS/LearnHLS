@@ -2,6 +2,7 @@
 
 This project provides a simple command-line tool written in Rust to analyze LLVM Intermediate Representation (IR) files (.ll). It can count instruction opcodes within functions, display the source code of specific functions, and even offer an explanation for individual LLVM IR instructions.
 
+Video Demonstration: https://youtu.be/qUkO-PMqfrM
 ## **Backstory**
 
 As I was trying to become more familiar with LLVM IR syntax, I quickly realized that understanding the nuances of each instruction and how they translate from high-level code could be challenging. The existing documentation is thorough, but I found myself wishing for a more interactive and immediate way to dissect and learn from actual LLVM IR output. This led me to create this tool, aimed at providing a clearer, line-by-line understanding of LLVM IR, making the learning process more intuitive and convenient.
