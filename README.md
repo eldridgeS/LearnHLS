@@ -20,4 +20,10 @@ This repository showcases a collection of projects exploring various aspects of 
 **Key Technologies/Concepts:** Rust, LLVM IR, regex crate, llvm-ir crate, Compiler Toolchain, Debug Information (\!dbg).  
 **Location:** llvm\_ir\_tool/ 
 
+## **4\. HLS Component Simulation with Rust & C++ FFI**
+
+**Description:** This project demonstrates dynamic loading and Foreign Function Interface (FFI) interactions between Rust and C++, simulating a simplified High-Level Synthesis (HLS) component. It illustrates key concepts of dynamic linking, symbol resolution, and C++ name mangling, while mimicking HLS simulation logic for latency and BRAM estimation.
+**Key Technologies/Concepts:** Rust, C++, FFI (libloading), Dynamic Linking, Symbol Resolution, Name Mangling (extern "C"), GNU Binutils (nm), Simulated HLS Concepts (Latency, BRAM, Deadlocks), Error Propagation.
+**Location:** hls\_sim\_loader/ 
+
 Each project resides in its own subdirectory and contains a more detailed README.md with specific instructions for setup, compilation, and usage. Please refer to those individual READMEs for in-depth information.
